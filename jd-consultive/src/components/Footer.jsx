@@ -52,7 +52,7 @@ export default function Footer() {
 
               <a
                 className="soc"
-                href="#"
+                href="/"
               >
                 📷
               </a>
