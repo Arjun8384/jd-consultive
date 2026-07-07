@@ -217,7 +217,7 @@ export default function HomePage() {
 
             {/* ROLES */}
 
-      <section className="section">
+      {/* <section className="section">
 
         <div className="container">
 
@@ -265,7 +265,7 @@ export default function HomePage() {
 
         </div>
 
-      </section>
+      </section> */}
 
       {/* WHY CHOOSE US */}
 

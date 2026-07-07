@@ -17,7 +17,6 @@ const router = express.Router();
 /* -------------------------------------------------------------------------- */
 
 async function notifyOwnerClient(entry) {
-  console.log("notifyownerclient called");
   return transporter.sendMail({
     from: process.env.EMAIL_USER,
     to: process.env.OWNER_EMAIL,
@@ -303,66 +302,46 @@ router.post(
         errors: errors.array(),
       });
     }
-try {
 
-  await notifyOwnerClient(entry);
-  console.log("Owner mail sent");
+    try {
+      const entry = await ClientEnquiry.create({
+        ...req.body,
+        ip: req.ip,
+      });
 
-} catch(err){
-
-  console.log("Owner mail error", err);
-
-}
-
-try {
-
-  await sendClientConfirmation(entry);
-  console.log("Confirmation mail sent");
-
-} catch(err){
-
-  console.log("Confirmation error", err);
-
-}
-    // try {
-    //   const entry = await ClientEnquiry.create({
-    //     ...req.body,
-    //     ip: req.ip,
-    //   });
-
-    //   setImmediate(async () => {
-    //     try {
-    //       await Promise.all([
-    //         notifyOwnerClient(entry),
-    //         sendClientConfirmation(entry),
-    //       ]);
-    //     } catch (mailError) {
-    //       logger.error(
-    //         `Client email failed: ${mailError.message}`
-    //       );
-    //     }
-    //   });
+      setImmediate(async () => {
+        try {
+          await Promise.all([
+            notifyOwnerClient(entry),
+            sendClientConfirmation(entry),
+          ]);
+        } catch (mailError) {
+          logger.error(
+            `Client email failed: ${mailError.message}`
+          );
+        }
+      });
     
-//       logger.info(
-//         `[CLIENT ENQUIRY] id=${entry._id} company="${entry.company}" email=${entry.email}`
-//       );
+      logger.info(
+        `[CLIENT ENQUIRY] id=${entry._id} company="${entry.company}" email=${entry.email}`
+      );
 
-//       return res.status(201).json({
-//         success: true,
-//         id: entry._id,
-//       });
+      return res.status(201).json({
+        success: true,
+        id: entry._id,
+      });
 
-//     } catch (err) {
+    } catch (err) {
 
-//       logger.error(
-//         `Client enquiry save failed: ${err.message}`
-//       );
+      logger.error(
+        `Client enquiry save failed: ${err.message}`
+      );
 
-//       return res.status(500).json({
-//         error:
-//           'Could not save your enquiry. Please try again.',
-//       });
-//     }
+      return res.status(500).json({
+        error:
+          'Could not save your enquiry. Please try again.',
+      });
+    }
   }
 );
 
