@@ -1,0 +1,345 @@
+/* =========================
+   SERVICES PAGE
+========================= */
+
+.services-page {
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.page-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 30px 70px;
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.page-hero p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,.75);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.services-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px 100px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 28px;
+}
+
+.services-card {
+  background: rgba(255,255,255,.03);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  border-radius: 24px;
+
+  padding: 35px;
+
+  backdrop-filter: blur(14px);
+
+  transition: .35s ease;
+
+  min-height: 260px;
+}
+
+.services-card:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(90,160,255,.35);
+
+  box-shadow:
+  0 20px 40px rgba(0,0,0,.25);
+}
+
+.services-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.services-card p {
+  color: rgba(255,255,255,.72);
+  line-height: 1.9;
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header span {
+  display: inline-block;
+  color: #54c7ff;
+  font-size: .85rem;
+  letter-spacing: 3px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem,4vw,3rem);
+  font-weight: 800;
+}
+
+/* =========================
+   INDUSTRIES
+========================= */
+
+.industries-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px 110px;
+}
+
+.industries-section h2 {
+  text-align: center;
+  margin-bottom: 45px;
+  font-size: 2.4rem;
+}
+
+.industry-grid {
+  display: grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap: 20px;
+}
+
+.industry-pill {
+  text-align: center;
+
+  padding: 20px;
+
+  border-radius: 18px;
+
+  background:
+  rgba(255,255,255,.03);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  font-weight: 600;
+
+  transition: .3s ease;
+}
+
+.industry-pill:hover {
+  transform: translateY(-4px);
+
+  border-color:
+  rgba(90,160,255,.3);
+}
+
+/* =========================
+   WHY CHOOSE US
+========================= */
+
+.why-choose-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px 120px;
+}
+
+.why-grid {
+  display: grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(260px,1fr));
+
+  gap: 28px;
+}
+
+.why-card {
+  padding: 35px;
+
+  border-radius: 22px;
+
+  background:
+  rgba(255,255,255,.03);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  transition: .3s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-6px);
+}
+
+.why-card h3 {
+  margin-bottom: 15px;
+  font-size: 1.35rem;
+}
+
+.why-card p {
+  color: rgba(255,255,255,.72);
+  line-height: 1.8;
+}
+
+/* =========================
+   PROCESS
+========================= */
+
+.service-process {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px 120px;
+}
+
+.process-grid {
+  display: grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
+
+  gap: 24px;
+}
+
+.process-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding: 28px;
+
+  border-radius: 22px;
+
+  background:
+  rgba(255,255,255,.03);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  transition: .3s ease;
+}
+
+.process-card:hover {
+  transform: translateY(-5px);
+}
+
+.process-card span {
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 16px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #42c7ff,
+    #7b61ff
+  );
+
+  font-weight: 700;
+}
+
+.process-card h3 {
+  font-size: 1.2rem;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.service-cta {
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  padding: 0 30px 120px;
+
+  text-align: center;
+}
+
+.service-cta h2 {
+  font-size: clamp(2rem,4vw,3rem);
+  margin-bottom: 20px;
+}
+
+.service-cta p {
+  color: rgba(255,255,255,.75);
+  margin-bottom: 35px;
+  line-height: 1.8;
+}
+
+.cta-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+
+  padding: 16px 34px;
+
+  border-radius: 999px;
+
+  color: #fff;
+
+  font-weight: 600;
+
+  background:
+  linear-gradient(
+    135deg,
+    #42c7ff,
+    #7b61ff
+  );
+
+  transition: .3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px) {
+
+  .page-hero {
+    padding-top: 100px;
+  }
+
+  .services-card,
+  .why-card {
+    min-height: auto;
+  }
+
+  .process-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}

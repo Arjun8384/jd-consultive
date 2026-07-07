@@ -1,0 +1,216 @@
+.hero{
+  position:relative;
+  padding:110px 0 80px;
+  overflow:hidden;
+}
+
+.hero-inner{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:40px;
+  align-items:center;
+}
+
+.hero h1{
+  font-size:clamp(42px,6vw,72px);
+  line-height:1.05;
+  font-family:'Syne',sans-serif;
+  margin-bottom:20px;
+}
+
+.hero p{
+  font-size:18px;
+  color:var(--muted);
+  line-height:1.8;
+  max-width:650px;
+}
+
+.gradient-text{
+  background:linear-gradient(
+    135deg,
+    var(--a),
+    var(--b)
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:16px;
+  margin-top:32px;
+  flex-wrap:wrap;
+}
+
+.hero-card{
+  padding:28px;
+  border-radius:24px;
+  background:var(--card);
+  border:1px solid var(--line);
+}
+
+.hero-card-item{
+  padding:16px;
+  border-radius:16px;
+  background:rgba(255,255,255,.04);
+  margin-bottom:12px;
+}
+
+.section{
+  padding:90px 0;
+}
+
+.section-title{
+  text-align:center;
+  font-size:42px;
+  margin-bottom:12px;
+  font-family:'Syne',sans-serif;
+}
+
+.section-subtitle{
+  text-align:justify;
+  max-width:900px;
+  margin:0 auto 50px;
+  color:var(--muted);
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.stat-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  padding:28px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.stat-number{
+  font-size:42px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.industries-grid,
+.roles-grid,
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.industry-card,
+.role-card,
+.why-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:24px;
+  transition:.3s;
+}
+
+.industry-card:hover,
+.role-card:hover,
+.why-card:hover{
+  transform:translateY(-5px);
+}
+
+.process-grid{
+  display:grid;
+  gap:20px;
+}
+
+.process-card{
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+}
+
+.process-number{
+  width:50px;
+  height:50px;
+  border-radius:12px;
+  background:linear-gradient(
+    135deg,
+    var(--a),
+    var(--b)
+  );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+
+.testimonial-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+.testimonial-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:28px;
+}
+
+.testimonial-card p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.testimonial-author{
+  margin-top:20px;
+  font-weight:600;
+}
+
+.cta-section{
+  text-align:center;
+  padding:50px 50px;
+  border-radius:30px;
+
+  background:linear-gradient(
+    135deg,
+    rgba(56,200,255,.15),
+    rgba(123,92,255,.15)
+  );
+}
+
+.whatsapp-float{
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  text-decoration:none;
+  z-index:999;
+}
+
+@media(max-width:900px){
+
+.hero-inner{
+  grid-template-columns:1fr;
+}
+
+.stats-grid,
+.industries-grid,
+.roles-grid,
+.why-grid,
+.testimonial-grid{
+  grid-template-columns:1fr;
+}
+
+.section-title{
+  font-size:32px;
+}
+}
