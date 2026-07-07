@@ -72,12 +72,15 @@ function ClientForm({ onSuccess }) {
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ ...form, type: 'client' }),
       });
-      if (res.ok) onSuccess();
-      else throw new Error('Server error');
-    } catch {
-      alert('Something went wrong. Please try again or email us directly.');
-    } finally {
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Server error");
+      }
       setLoading(false);
+      onSuccess();
+      return;
+    } catch (err) {
+      alert(err.message);
     }
   };
 
@@ -285,7 +288,9 @@ if (!res.ok) {
 alert(
   JSON.stringify(data, null, 2));
   return;
-} onSuccess();
+} 
+  setLoading(false);
+  onSuccess();
 
   } catch {
 
@@ -293,12 +298,7 @@ alert(
       'Something went wrong. Please try again or email us directly.'
     );
 
-  } finally {
-
-    setLoading(false);
-
   }
-
 };
 
   return (

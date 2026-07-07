@@ -309,16 +309,14 @@ router.post(
         ip: req.ip,
       });
 
-      try {
-        await Promise.all([
+      Promise.all([
           notifyOwnerClient(entry),
           sendClientConfirmation(entry),
-        ]);
-      } catch (mailError) {
+        ]).catch((mailError) => {
         logger.error(
           `Client email failed: ${mailError.message}`
         );
-      }
+      });
 
       logger.info(
         `[CLIENT ENQUIRY] id=${entry._id} company="${entry.company}" email=${entry.email}`
@@ -414,16 +412,14 @@ if (req.file) {
 
 });
 
-      try {
-        await Promise.all([
-          notifyOwnerCandidate(entry),
-          sendCandidateConfirmation(entry),
-        ]);
-      } catch (mailError) {
+            Promise.all([
+        notifyOwnerCandidate(entry),
+        sendCandidateConfirmation(entry),
+      ]).catch((mailError) => {
         logger.error(
           `Candidate email failed: ${mailError.message}`
         );
-      }
+      });
 
       logger.info(
         `[CANDIDATE ENQUIRY] id=${entry._id} name="${entry.name}" email=${entry.email}`
