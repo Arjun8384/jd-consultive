@@ -17,6 +17,7 @@ const router = express.Router();
 /* -------------------------------------------------------------------------- */
 
 async function notifyOwnerClient(entry) {
+  console.log("notifyownerclient called");
   return transporter.sendMail({
     from: process.env.EMAIL_USER,
     to: process.env.OWNER_EMAIL,
@@ -47,7 +48,7 @@ async function notifyOwnerCandidate(entry) {
     from: process.env.EMAIL_USER,
     to: process.env.OWNER_EMAIL,
 
-    subject: `Candidate | ${entry.name} | ${entry.currentCompany || "N/A"} | #${entry._id}`,
+    subject: `Candidate | ${entry.name} | ${entry.currentCompany || "N/A"}`,
     html: `
       <h2>New Candidate Profile Received</h2>
 
@@ -302,42 +303,66 @@ router.post(
         errors: errors.array(),
       });
     }
+try {
 
-    try {
-      const entry = await ClientEnquiry.create({
-        ...req.body,
-        ip: req.ip,
-      });
+  await notifyOwnerClient(entry);
+  console.log("Owner mail sent");
 
-      Promise.all([
-          notifyOwnerClient(entry),
-          sendClientConfirmation(entry),
-        ]).catch((mailError) => {
-        logger.error(
-          `Client email failed: ${mailError.message}`
-        );
-      });
+} catch(err){
 
-      logger.info(
-        `[CLIENT ENQUIRY] id=${entry._id} company="${entry.company}" email=${entry.email}`
-      );
+  console.log("Owner mail error", err);
 
-      return res.status(201).json({
-        success: true,
-        id: entry._id,
-      });
+}
 
-    } catch (err) {
+try {
 
-      logger.error(
-        `Client enquiry save failed: ${err.message}`
-      );
+  await sendClientConfirmation(entry);
+  console.log("Confirmation mail sent");
 
-      return res.status(500).json({
-        error:
-          'Could not save your enquiry. Please try again.',
-      });
-    }
+} catch(err){
+
+  console.log("Confirmation error", err);
+
+}
+    // try {
+    //   const entry = await ClientEnquiry.create({
+    //     ...req.body,
+    //     ip: req.ip,
+    //   });
+
+    //   setImmediate(async () => {
+    //     try {
+    //       await Promise.all([
+    //         notifyOwnerClient(entry),
+    //         sendClientConfirmation(entry),
+    //       ]);
+    //     } catch (mailError) {
+    //       logger.error(
+    //         `Client email failed: ${mailError.message}`
+    //       );
+    //     }
+    //   });
+    
+//       logger.info(
+//         `[CLIENT ENQUIRY] id=${entry._id} company="${entry.company}" email=${entry.email}`
+//       );
+
+//       return res.status(201).json({
+//         success: true,
+//         id: entry._id,
+//       });
+
+//     } catch (err) {
+
+//       logger.error(
+//         `Client enquiry save failed: ${err.message}`
+//       );
+
+//       return res.status(500).json({
+//         error:
+//           'Could not save your enquiry. Please try again.',
+//       });
+//     }
   }
 );
 
@@ -412,14 +437,18 @@ if (req.file) {
 
 });
 
-            Promise.all([
-        notifyOwnerCandidate(entry),
-        sendCandidateConfirmation(entry),
-      ]).catch((mailError) => {
-        logger.error(
-          `Candidate email failed: ${mailError.message}`
-        );
-      });
+           setImmediate(async () => {
+            try {
+              await Promise.all([
+                notifyOwnerCandidate(entry),
+                sendCandidateConfirmation(entry),
+              ]);
+            } catch (mailError) {
+              logger.error(
+                `Candidate email failed: ${mailError.message}`
+              );
+            }
+          });
 
       logger.info(
         `[CANDIDATE ENQUIRY] id=${entry._id} name="${entry.name}" email=${entry.email}`
